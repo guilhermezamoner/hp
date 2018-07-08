@@ -29,7 +29,9 @@ petController.show = function(req, res) {
 
 // Create new pet
 petController.create = function(req, res) {
-  res.render("../views/pet/add_pet");
+  res.render('../views/pet/add_pet', {
+    title:'Adicionar Pet'
+  });
 };
 
 // Save new pet
@@ -39,8 +41,6 @@ petController.save = function(req, res) {
   pet.tipo = req.body.tipo;
   pet.descricao = req.body.descricao;
   pet.dono = req.user._id;
-
-  console.log("...... " + req.body)
 
   pet.save(function(err) {
     if(err) {

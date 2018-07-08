@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  h1= pet.nome
+  h5 Dono: by #{dono}
+  p= pet.tipo
+  p= pet.descricao
+  hr
+  if user
+    if user.id ==pet.dono
+      a.btn.btn-default(href='/pets/edit/'+pet._id) Editar 
+      a.btn.btn-danger.delete-pet(href='#',data-id=pet._id) Deletar
+  
