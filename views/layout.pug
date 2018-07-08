@@ -21,6 +21,15 @@ html
             if user
               li
                 a(href='/articles/add') Add Article
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                  | Pets 
+                  span.caret
+                ul.dropdown-menu(role='menu')
+                  li
+                    a(href='/pets/create') Adicionar Pet
+                  li
+                    a(href='#') Visualizar meus Pets
           ul.nav.navbar-nav.navbar-right
             if user
               li 

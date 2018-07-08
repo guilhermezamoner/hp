@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1 #{title}
+  form(method='POST', action='/pets/save')
+    #form-group
+      label Nome:
+      input.form-control(name='nome', type='text')
+    #form-group
+      label Descricao:
+      textarea.form-control(name='descricao')
+    #form-control
+      label Tipo:
+      select.form-control(name='tipo')
+        each val in ['CACHORRO', 'GATO','OUTROS']
+          option= val  
+    br
+    input.btn.btn-primary(type='submit',value='Submit')

@@ -100,9 +100,10 @@ app.get('/', function(req, res){
 // Route Files
 let articles = require('./routes/articles');
 let users = require('./routes/users');
+let pets = require('./routes/pets');
 app.use('/articles', articles);
 app.use('/users', users);
-
+app.use('/pets', pets);
 // Start Server
 app.listen(3000, function(){
   console.log('Server started on port 3000...');
