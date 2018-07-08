@@ -81,4 +81,12 @@ router.get('/logout', function(req, res){
   res.redirect('/users/login');
 });
 
+router.get('/edit/:id', function(req, res) {
+  user.edit(req, res);
+});
+
+router.post('/update/:id', function(req, res) {
+  user.update(req, res);
+});
+
 module.exports = router;
