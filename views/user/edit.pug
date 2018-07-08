@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  h1 Editar sua conta
+  form(method='POST', action='/users/update/'+user._id)
+    #form-group
+      label Nome Completo:
+      input.form-control(name='name', type='text', value=user.name)
+    #form-group
+      label Email:
+      input.form-control(name='email', type='text', value=user.email)
+    #form-group
+      label Nome de usuário:
+      input.form-control(name='username',type='text', value=user.username)
+    #form-group
+      label Senha:
+      input.form-control(name='password',type='password', value=user.password)
+    br
+    input.btn.btn-primary(type='submit',value='Submit')
+    a.btn.btn-danger(href='/', class='cancel') Cancelar 
