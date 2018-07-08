@@ -15,5 +15,11 @@ let petSchema = mongoose.Schema({
   descricao:{
     type: String,
     required: true
+  },
+  dono:{
+    type: String,
+    required: true
   }
 });
+
+let Pet = module.exports = mongoose.model('Pet', petSchema);
