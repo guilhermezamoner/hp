@@ -2,6 +2,8 @@ extends ../layout
 
 block content
   h1 Editar sua conta
+  a.btn.btn-danger.delete-user(href='/users/delete/'+user._id) Deletar Conta?
+
   form(method='POST', action='/users/update/'+user._id)
     #form-group
       label Nome Completo:
