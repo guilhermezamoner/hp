@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 var userController = require("../controllers/userController.js");
 const passport = require('passport');
+var user = require("../controllers/userController.js");
 
 // Bring in User Model
 let User = require('../models/user');
@@ -33,20 +34,31 @@ router.post('/login', function(req, res, next){
 // logout
 router.get('/logout', function(req, res){
   req.logout();
-  req.flash('success', 'You are logged out');
+  req.flash('success', 'Você está desconectado');
   res.redirect('/users/login');
 });
 
-router.get('/edit/:id', function(req, res) {
+router.get('/edit/:id', ensureAuthenticated,function(req, res) {
   userController.edit(req, res);
 });
 
-router.post('/update/:id', function(req, res) {
+router.post('/update/:id', ensureAuthenticated,function(req, res) {
   userController.update(req, res);
 });
 
-router.get('/delete/:id', function(req, res, next) {
+router.get('/delete/:id', ensureAuthenticated,function(req, res, next) {
   userController.delete(req, res);
 });
+
+// Access Control
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    //console.log(req.users);
+    return next();
+  } else {
+    req.flash('danger', 'Por favor, Faça o Login!');
+    res.redirect('/users/login');
+  }
+}
 
 module.exports = router;

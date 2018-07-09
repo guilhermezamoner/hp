@@ -24,8 +24,7 @@ db.on('error', function(err){
 // Init App
 const app = express();
 
-// Bring in Models
-let Article = require('./models/article');
+let Passeios = require('./models/passeios');
 
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -85,25 +84,27 @@ app.get('*', function(req, res, next){
 
 // Home Route
 app.get('/', function(req, res){
-  Article.find({}, function(err, articles){
+  Passeios.find({}, function(err, passeios){
     if(err){
       console.log(err);
     } else {
+      //console.log(passeios);
       res.render('index', {
-        title:'Articles',
-        articles: articles
+        title:'Feed passeios',
+        passeios: passeios
       });
     }
   });
 });
 
 // Route Files
-let articles = require('./routes/articles');
 let users = require('./routes/users');
 let pets = require('./routes/pets');
-app.use('/articles', articles);
+let passeios = require('./routes/passeios');
 app.use('/users', users);
 app.use('/pets', pets);
+app.use('/passeios', passeios);
+
 // Start Server
 app.listen(3000, function(){
   console.log('Server started on port 3000...');

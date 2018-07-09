@@ -7,16 +7,16 @@ block content
   form(method='POST', action='/users/update/'+user._id)
     #form-group
       label Nome Completo:
-      input.form-control(name='name', type='text', value=user.name)
+      input.form-control(name='name', type='text', value=user.name, required)
     #form-group
       label Email:
-      input.form-control(name='email', type='text', value=user.email)
+      input.form-control(name='email', type='text', value=user.email,required)
     #form-group
       label Nome de usuário:
-      input.form-control(name='username',type='text', value=user.username)
+      input.form-control(name='username',type='text', value=user.username,required)
     #form-group
       label Senha:
-      input.form-control(name='password',type='password', value=user.password)
+      input.form-control(name='password',type='password', value=user.password,required)
     br
-    input.btn.btn-primary(type='submit',value='Submit')
-    a.btn.btn-danger(href='/', class='cancel') Cancelar 
+    <button type="submit">Salvar</button>
+    <a href="/" class="cancelbtn"> Cancelar </a>
