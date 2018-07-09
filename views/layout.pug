@@ -23,7 +23,7 @@ html
                 a(href='/articles/add') Add Article
               li.dropdown
                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-                  | Pets 
+                  | Pets
                   span.caret
                 ul.dropdown-menu(role='menu')
                   li
@@ -32,7 +32,10 @@ html
                     a(href='#') Visualizar meus Pets
           ul.nav.navbar-nav.navbar-right
             if user
-              li 
+              li
+                a(href='/users/edit/'+user._id) Perfil
+              li
+              li
                 a(href='/users/logout') Logout
             else
               li
@@ -49,6 +52,6 @@ html
       hr
       footer
         p 2018
-    script(src='/bower_components/jquery/dist/jquery.js')  
+    script(src='/bower_components/jquery/dist/jquery.js')
     script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
-    script(src='/js/main.js')  
+    script(src='/js/main.js')

@@ -1,13 +1,32 @@
-extends layout
+extend layout
 
 block content
-  h1 Login
-  form(method='POST', action='/users/login')
-    #form-group
-      label Nome de usuário:
-      input.form-control(name='username',type='text')
-    #form-group
-      label Senha:
-      input.form-control(name='password',type='password')
-    br
-    input.btn.btn-primary(type='submit',value='Submit')
+  <!DOCTYPE html>
+  <html>
+
+      link(href='/css/style.css', rel='stylesheet')
+
+      <body>
+        <form method='POST', action='/users/login'>
+          <div class="imgcontainer">
+            <img src="/img/img1.png" alt="Avatar" class="avatar">
+          </div>
+
+          <div class="container">
+            <label for="username"><b>Nome de Usuário</b></label>
+            <input type="text" placeholder="Usuário" name="username" required>
+
+            <label for="psw"><b>Senha</b></label>
+            <input type="password" placeholder="Senha" name="password" required>
+
+            <button type="submit">Login</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+          </div>
+
+          <div class="container2" style="background-color:#f1f1f1">
+            <a href="/" class="cancelbtn"> Cancelar </a>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+          </div>
+        </form>

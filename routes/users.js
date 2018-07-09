@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+var user = require("../controllers/userController.js");
 
 // Bring in User Model
 let User = require('../models/user');
@@ -19,12 +20,12 @@ router.post('/register', function(req, res){
   const password = req.body.password;
   const password2 = req.body.password2;
 
-  req.checkBody('name', 'Name is required').notEmpty();
-  req.checkBody('email', 'Email is required').notEmpty();
-  req.checkBody('email', 'Email is not valid').isEmail();
-  req.checkBody('username', 'Username is required').notEmpty();
-  req.checkBody('password', 'Password is required').notEmpty();
-  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+  req.checkBody('name', 'Nome é obrigatório').notEmpty();
+  req.checkBody('email', 'Email é obrigatório').notEmpty();
+  req.checkBody('email', 'Email está inválido').isEmail();
+  req.checkBody('username', 'Nome de usuário é requerido').notEmpty();
+  req.checkBody('password', 'Senha requerida').notEmpty();
+  req.checkBody('password2', 'As senhas não coincidem').equals(req.body.password);
 
   let errors = req.validationErrors();
 
@@ -51,7 +52,7 @@ router.post('/register', function(req, res){
             console.log(err);
             return;
           } else {
-            req.flash('success','You are now registered and can log in');
+            req.flash('success','Agora você está registrado e pode entrar');
             res.redirect('/users/login');
           }
         });
@@ -77,16 +78,33 @@ router.post('/login', function(req, res, next){
 // logout
 router.get('/logout', function(req, res){
   req.logout();
-  req.flash('success', 'You are logged out');
+  req.flash('success', 'Você está desconectado');
   res.redirect('/users/login');
 });
 
-router.get('/edit/:id', function(req, res) {
-  user.edit(req, res);
+router.get('/edit/:id',ensureAuthenticated, function(req, res) {
+  if(req.user._id == req.params.id){
+    user.edit(req, res);
+  } else {
+    req.flash('danger','Voce não tem permissão para acessar está conta');
+    res.redirect('/');
+  }
 });
 
-router.post('/update/:id', function(req, res) {
-  user.update(req, res);
+router.post('/update/:id',ensureAuthenticated, function(req, res) {
+    user.update(req, res);
 });
+
+
+// Access Control
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    //console.log(req.users);
+    return next();
+  } else {
+    req.flash('danger', 'Por favor, Faça o Login!');
+    res.redirect('/users/login');
+  }
+}
 
 module.exports = router;
