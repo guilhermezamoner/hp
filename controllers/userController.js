@@ -44,7 +44,7 @@ userController.register = function(req, res) {
             console.log(err);
             return;
           } else {
-            req.flash('success','You are now registered and can log in');
+            req.flash('success','Cadastrado com sucesso!');
             res.redirect('/users/login');
           }
         });

@@ -6,4 +6,7 @@ block content
     each passeio, i in passeios
       li.list-group-item
         div
-        a(href="/passeios/"+passeio._id)= passeio.pet + passeio.valor_passeio + passeio.body
+        <img src="/img/pug.png" alt="Avatar" class="avatar">
+        a(href="/passeios/"+passeio._id)= "Tipo: " + passeio.pet + "  , Valor: R$ " + passeio.valor_passeio +"  ,  Descrição: "+ passeio.body
+        br
+        label Chapecó-SC
