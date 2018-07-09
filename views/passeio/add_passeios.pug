@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+  h1 #{title}
+
+  form(method='POST', action='/passeios/add')
+    #form-group
+      label descrição:
+      textarea.form-control(name='body',required)
+
+    #form-group
+      label Valor do Passeio:
+        input.form-control(name='valor_passeio', type='text',required)
+    #form--container
+        label Selecione o seu Pet:
+          select.form-control(name='pet',required)
+            each val in ['CACHORRO', 'GATO','OUTROS']
+              option= val
+    #form--container
+        label Status do Paseio
+          select.form-control(name='situacao',required)
+            each val in ['Aberto', 'Fechado']
+                option= val
+    br
+
+    <button type="submit">Adicionar</button>
+    <a href="/" class="cancelbtn"> Cancelar </a>

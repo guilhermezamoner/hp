@@ -1,7 +1,10 @@
-extends layout
+extends ../layout
 
 block content
   h1 #{title}
+  <a href="/passeios/add" class="btn btn-primary"> Novo passeio </a>
+  br
+  br
   ul.list-group
     each passeio, i in passeios
       li.list-group-item

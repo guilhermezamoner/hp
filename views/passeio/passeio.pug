@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  h1= passeios.pet
+  h2 Dono do animal : #{dono_pet}
+  h3 valor do Passeio : #{passeios.valor_passeio}
+  p= passeios.body
+  hr
+  if user
+    if user.id == passeios.dono_pet
+      a.btn.btn-default(href='/passeios/edit/'+passeios._id) Editar
+      spam 
+      a.btn.btn-danger(href='/passeios/delete/'+passeios._id) deletar

@@ -19,8 +19,6 @@ html
             li
               a(href='/') Home
             if user
-              li
-                a(href='/articles/add') Add Article
               li.dropdown
                 a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
                   | Pets
@@ -30,6 +28,16 @@ html
                     a(href='/pets/create') Adicionar Pet
                   li
                     a(href='#') Visualizar meus Pets
+
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                  | Passeios
+                  span.caret
+                ul.dropdown-menu(role='menu')
+                  li
+                    a(href='/passeios/add') Adicionar Passeio
+                  li
+                    a(href='/passeios/list/'+ user._id) Visualizar meus Passeios
           ul.nav.navbar-nav.navbar-right
             if user
               li
@@ -39,7 +47,7 @@ html
                 a(href='/users/logout') Logout
             else
               li
-                a(href='/users/register') Register
+                a(href='/users/register') Registre-se
               li
                 a(href='/users/login') Login
     .container
