@@ -63,7 +63,7 @@ petController.edit = function(req, res) {
       console.log("Error:", err);
     }
     else {
-      res.render("../views/pet/edit", {pet: pet});
+      res.render("../views/pet/edit_pet", {pet: pet});
     }
   });
 };
@@ -73,18 +73,18 @@ petController.update = function(req, res) {
   Pet.findByIdAndUpdate(req.params.id, 
     { $set: 
      { 
-      nome: req.body.name, 
-      descricao: req.body.address, 
-      tipo: req.body.tipo, 
-      dono: req.user._id
+      nome: req.body.nome, 
+      descricao: req.body.descricao, 
+      tipo: req.body.tipo 
      }
     }, 
       { new: true }, function (err, pet) {
     if (err) {
       console.log(err);
       res.render("../views/pet/edit", {pet: req.body});
-    }
-    res.redirect("/pet/show/"+pet._id);
+    }else{
+      req.flash('sucesso','Pet Atualizado!');
+      res.redirect('/');    }
   });
 };
 
@@ -95,8 +95,8 @@ petController.delete = function(req, res) {
       console.log(err);
     }
     else {
-      console.log("Pet deleted!");
-      res.redirect("/pet");
+      req.flash('sucesso','Pet Deletado!');
+      res.redirect('/');
     }
   });
 };

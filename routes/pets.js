@@ -32,8 +32,8 @@ router.post('/update/:id', function(req, res) {
   pet.update(req, res);
 });
 
-// Edit update
-router.post('/delete/:id', function(req, res, next) {
+// delete
+router.get('/delete/:id', function(req, res, next) {
   pet.delete(req, res);
 });
 

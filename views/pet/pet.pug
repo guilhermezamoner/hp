@@ -9,5 +9,5 @@ block content
   if user
     if user.id ==pet.dono
       a.btn.btn-default(href='/pets/edit/'+pet._id) Editar 
-      a.btn.btn-danger.delete-pet(href='#',data-id=pet._id) Deletar
+      a.btn.btn-danger(href='/pets/delete/'+pet._id) Deletar
   
