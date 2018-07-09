@@ -38,8 +38,13 @@ router.get('/logout', function(req, res){
   res.redirect('/users/login');
 });
 
-router.get('/edit/:id', ensureAuthenticated,function(req, res) {
-  userController.edit(req, res);
+router.get('/edit/:id',ensureAuthenticated, function(req, res) {
+  if(req.user._id == req.params.id){
+    user.edit(req, res);
+  } else {
+    req.flash('danger','Voce não tem permissão para acessar está conta');
+    res.redirect('/');
+  }
 });
 
 router.post('/update/:id', ensureAuthenticated,function(req, res) {
