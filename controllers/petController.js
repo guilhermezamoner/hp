@@ -5,12 +5,15 @@ var petController = {};
 
 // Show list of pet
 petController.list = function(req, res) {
-  Pet.find({}).exec(function (err, pet) {
+  Pet.find({dono : req.user._id}, function (err, pets) {
     if (err) {
       console.log("Error:", err);
     }
     else {
-      res.render("../views/pet/index", {pet: pet});
+      res.render("../views/pet/index", {
+        title:'Meus Pets',
+        pets: pets
+      });
     }
   });
 };
@@ -22,7 +25,7 @@ petController.show = function(req, res) {
       console.log("Error:", err);
     }
     else {
-      res.render("../views/pet/show", {pet: pet});
+      res.render("../views/pet/pet", {pet: pet});
     }
   });
 };
@@ -67,7 +70,16 @@ petController.edit = function(req, res) {
 
 // Update an pet
 petController.update = function(req, res) {
-  Pet.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, address: req.body.address, position: req.body.position, salary: req.body.salary }}, { new: true }, function (err, pet) {
+  Pet.findByIdAndUpdate(req.params.id, 
+    { $set: 
+     { 
+      nome: req.body.name, 
+      descricao: req.body.address, 
+      tipo: req.body.tipo, 
+      dono: req.user._id
+     }
+    }, 
+      { new: true }, function (err, pet) {
     if (err) {
       console.log(err);
       res.render("../views/pet/edit", {pet: req.body});

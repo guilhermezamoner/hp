@@ -2,9 +2,9 @@ extends ../layout
 
 block content
   h1= pet.nome
-  h5 Dono: by #{dono}
-  p= pet.tipo
-  p= pet.descricao
+  h4 Dono: #{user.username}
+  h4 Tipo:  #{pet.tipo}
+  h4 Descrição: #{pet.descricao}
   hr
   if user
     if user.id ==pet.dono
